@@ -21,6 +21,19 @@
 
         <br>
         <label for="">
+            Slug:
+            <br>
+            <input type="text" name="slug" value="{{ old('slug') }}">
+        </label>
+
+        @error('slug')
+            <br>
+            <span>*{{ $message }}</span>
+            <br>
+        @enderror
+
+        <br>
+        <label for="">
             Description:
             <br>
             <textarea name="description" id="" cols="30" rows="5">{{ old('description') }}</textarea>

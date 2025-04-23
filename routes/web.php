@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\HomeController;
+use \App\Mail\ContactUsMailable;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +18,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 
 Route::resource('cursos', CursoController::class);
+
+Route::view('about', 'about')->name('about');
+
+// Route::get('contact_us', function () {
+//     Mail::to('hansalejandroca@gmail.com')->send(new ContactUsMailable);
+//     return 'Email sent successfully';
+// })->name('contact_us');
+
+Route::get('contact_us', [ContactUsController::class, 'index'])->name('contact_us.index');
+Route::post('contact_us', [ContactUsController::class, 'store'])->name('contact_us.store');
